@@ -1,12 +1,12 @@
 [project]
 name = "copilot-openai-api"
-version = "0.1.0"
+version = "0.1.1"
 description = "Default template for PDM package"
 authors = [
     {name = "Hanchin Hsieh", email = "me@yuchanns.xyz"},
 ]
 dependencies = ["fastapi>=0.115.12", "httpx>=0.28.1", "aiofiles>=24.1.0", "uvicorn>=0.34.0", "watchfiles>=1.0.4"]
-requires-python = "==3.10.*"
+requires-python = "==3.13.*"
 readme = "README.md"
 license = {text = "Apache"}
 
