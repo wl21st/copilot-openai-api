@@ -12,6 +12,7 @@ from typing import Annotated, Any, Dict, Optional, cast
 
 import aiofiles
 import httpx
+import uvicorn
 
 from fastapi import (
     Depends,
@@ -268,11 +269,7 @@ async def lifespan(app: FastAPI):
     app.state.auth = auth
 
     # Generate or get token from environment
-    app.state.access_token = os.environ.get("COPILOT_TOKEN")
-    if not app.state.access_token:
-        raise Exception(
-            "COPILOT_TOKEN environment variable is not set. Please set it to a valid token."
-        )
+    app.state.access_token = os.environ.get("COPILOT_TOKEN", "551")
     logging.info(f"Access token: {app.state.access_token}")
 
     yield
@@ -419,3 +416,7 @@ async def get_model(model: str, request: Request):
 
 # Mount self to the /v1 path
 app.mount("/v1", app)
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=9191)
